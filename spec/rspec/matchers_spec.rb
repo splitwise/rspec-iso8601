@@ -36,4 +36,14 @@ RSpec.describe "be_an_iso8601_string" do
     specify { expect(123).not_to be_an_iso8601_string }
     specify { expect({ hi: :there }).not_to be_an_iso8601_string }
   end
+
+  describe "when microsecond precision is specified" do
+    let(:six_micros) { "2022-07-01T15:30:01.670405Z" }
+    let(:zero_micros) { "2022-07-01T15:30:01Z" }
+
+    specify { expect(six_micros).to be_an_iso8601_string(precision: 6) }
+    specify { expect(six_micros).not_to be_an_iso8601_string(precision: 4) }
+    specify { expect(zero_micros).to be_an_iso8601_string(precision: 0) }
+    specify { expect(zero_micros).not_to be_an_iso8601_string(precision: 2) }
+  end
 end
