@@ -14,4 +14,4 @@ RSpec::Matchers.define :be_an_iso8601_string do
   end
 end
 
-RSpec::Matchers.alias_matcher :be_an_iso8601_string, :an_iso8601_string
+RSpec::Matchers.alias_matcher :an_iso8601_string, :be_an_iso8601_string
