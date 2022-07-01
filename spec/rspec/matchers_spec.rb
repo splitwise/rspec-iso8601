@@ -29,6 +29,12 @@ RSpec.describe "be_an_iso8601_string" do
     let(:string) { "ceci n'est pas une ISO8601 string" }
 
     specify { expect(string).not_to be_an_iso8601_string }
+
+    it "fails with a useful message" do
+      expect do
+        expect(string).to be_an_iso8601_string
+      end.to fail_with("expected \"#{string}\" to be an ISO8601 string")
+    end
   end
 
   context "with invalid types" do
@@ -45,5 +51,11 @@ RSpec.describe "be_an_iso8601_string" do
     specify { expect(six_micros).not_to be_an_iso8601_string(precision: 4) }
     specify { expect(zero_micros).to be_an_iso8601_string(precision: 0) }
     specify { expect(zero_micros).not_to be_an_iso8601_string(precision: 2) }
+
+    it "fails with a useful message" do
+      expect do
+        expect(zero_micros).to be_an_iso8601_string(precision: 2)
+      end.to fail_with("expected \"#{zero_micros}\" to be an ISO8601 string with precision 2")
+    end
   end
 end
