@@ -58,4 +58,22 @@ RSpec.describe "be_an_iso8601_string" do
       end.to fail_with("expected \"#{zero_micros}\" to be an ISO8601 string with precision 2")
     end
   end
+
+  describe "chaining precision expectation" do
+    let(:six_micros) { "2022-07-01T15:30:01.670405Z" }
+    let(:zero_micros) { "2022-07-01T15:30:01Z" }
+
+    specify { expect(six_micros).to be_an_iso8601_string.with_precision(6) }
+    specify { expect(six_micros).not_to be_an_iso8601_string.with_precision(4) }
+    specify { expect(zero_micros).to be_an_iso8601_string.with_precision(0) }
+    specify { expect(zero_micros).not_to be_an_iso8601_string.with_precision(2) }
+
+    context "when using keyword argument and chain" do
+      it "raises with a useful message" do
+        expect do
+          expect(six_micros).to be_an_iso8601_string(precision: 6).with_precision(6)
+        end.to raise_error(ArgumentError, /cannot specify keyword and/i)
+      end
+    end
+  end
 end
