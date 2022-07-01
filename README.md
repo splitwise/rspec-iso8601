@@ -1,8 +1,6 @@
-# Rspec::ISO8601
+# rspec-iso8601
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/rspec/iso8601`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This gem provides RSpec string matchers for [ISO8601 date/time strings](https://www.w3.org/TR/NOTE-datetime). It was inspired by [rspec-uuid](https://github.com/dpep/rspec-uuid).
 
 ## Installation
 
@@ -20,9 +18,33 @@ Or install it yourself as:
 
     $ gem install rspec-iso8601
 
+
+And require it (`spec_helper.rb` is a good place):
+
+```ruby
+require "rspec/iso8601"
+```
+
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+expect(your_string).to be_an_iso8601_string
+
+# Or use the alias:
+expect(your_hash).to match(abc: an_iso8601_string)
+```
+
+By default, the matcher doesn't care how many microseconds your ISO8601 string contains, if any.
+But you can tell it to be more restrictive:
+
+```ruby
+# With a keyword argument:
+expect(your_string).to be_an_iso8601_string(precision: 3)
+
+# With a chained method:
+expect(your_string).to be_an_iso8601_string.with_precision(3)
+```
+
 
 ## Development
 
