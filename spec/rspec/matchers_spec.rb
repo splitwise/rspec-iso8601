@@ -76,4 +76,10 @@ RSpec.describe "be_an_iso8601_string" do
       end
     end
   end
+
+  describe "aliases" do
+    it "is aliased as `an_iso8601_string`" do
+      expect({ key: "2022-07-01T15:30:01Z" }).to match(key: an_iso8601_string)
+    end
+  end
 end
