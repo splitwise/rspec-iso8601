@@ -9,7 +9,7 @@ RSpec::Matchers.define :be_an_iso8601_string do |precision: nil|
 
     return false unless actual.is_a?(String)
 
-    matches = actual.match(Rspec::ISO8601::REGEXP)
+    matches = actual.match(RSpec::ISO8601::REGEXP)
 
     precision ||= @precision
     matches && (precision.nil? || (matches[:usec]&.length || 0) == precision)
