@@ -4,7 +4,7 @@ require_relative "lib/rspec/iso8601/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "rspec-iso8601"
-  spec.version       = Rspec::ISO8601::VERSION
+  spec.version       = RSpec::ISO8601::VERSION
   spec.authors       = ["Jess Hottenstein", "Joe Stein"]
   spec.email         = ["jess@splitwise.com", "joe@splitwise.com"]
 
