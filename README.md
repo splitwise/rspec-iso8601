@@ -47,6 +47,12 @@ expect(your_string).to be_an_iso8601_string(precision: 3)
 expect(your_string).to be_an_iso8601_string.with_precision(3)
 ```
 
+You can also restrict matches to strings with the UTC "Z" offset designator:
+
+```ruby
+expect(your_string).to be_an_iso8601_string.in_utc
+```
+
 
 ## Development
 
