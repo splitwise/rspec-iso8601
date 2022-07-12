@@ -77,6 +77,25 @@ RSpec.describe "be_an_iso8601_string" do
     end
   end
 
+  describe "chaining UTC expectation" do
+    let(:in_utc) { "2022-07-01T15:30:01.670405Z" }
+    let(:not_in_utc) { "2022-07-01T15:30:01+04:00" }
+
+    it "works with precision chain" do
+      expect(in_utc).to be_an_iso8601_string.with_precision(6).in_utc
+      expect(in_utc).to be_an_iso8601_string.in_utc.with_precision(6)
+    end
+
+    it "fails with a useful message" do
+      expect do
+        expect(not_in_utc).to be_an_iso8601_string.in_utc
+      end.to fail_with("expected \"#{not_in_utc}\" to be an ISO8601 UTC string")
+    end
+
+    specify { expect(in_utc).to be_an_iso8601_string.in_utc }
+    specify { expect(not_in_utc).not_to be_an_iso8601_string.in_utc }
+  end
+
   describe "aliases" do
     it "is aliased as `an_iso8601_string`" do
       expect({ key: "2022-07-01T15:30:01Z" }).to match(key: an_iso8601_string)
