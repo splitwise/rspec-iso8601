@@ -1,6 +1,6 @@
 # rspec-iso8601
 
-[![Gem Version](https://badge.fury.io/rb/rspec-iso8601.svg)](https://badge.fury.io/rb/rspec-iso8601)
+[![Gem Version](https://badge.fury.io/rb/rspec-iso8601.svg)](https://badge.fury.io/rb/rspec-iso8601) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 This gem provides RSpec string matchers for [ISO8601 date/time strings](https://www.w3.org/TR/NOTE-datetime). It was inspired by [rspec-uuid](https://github.com/dpep/rspec-uuid).
 
