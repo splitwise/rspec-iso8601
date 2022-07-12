@@ -12,15 +12,21 @@ RSpec::Matchers.define :be_an_iso8601_string do |precision: nil|
     matches = actual.match(RSpec::ISO8601::REGEXP)
 
     precision ||= @precision
-    matches && (precision.nil? || (matches[:usec]&.length || 0) == precision)
+    matches &&
+      (precision.nil? || (matches[:usec]&.length || 0) == precision) &&
+      (@utc != true || matches[:offset] == "Z")
   end
 
   description do
-    "be an ISO8601 string#{" with precision #{precision}" unless precision.nil?}"
+    "be an ISO8601#{" UTC" if @utc} string#{" with precision #{precision}" unless precision.nil?}"
   end
 
   chain :with_precision do |digits|
     @precision = digits
+  end
+
+  chain :in_utc do
+    @utc = true
   end
 end
 
